@@ -3,172 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX STUDIO</title>
+    <title>APEX STUDIO | Creative & Academic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@300;400&display=swap');
-
         :root {
-            --bg: #0a0a0a;
-            --card-bg: #111111;
-            --text: #ffffff;
-            --accent: #ffffff; /* Минимализм: акцент белый или светло-серый */
-            --border: #333333;
+            --bg: #f8f9fa; /* Светлый фон */
+            --card: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #666666;
+            --accent: #1a1a1a; /* Черные акценты для минимализма */
+            --border: #e1e1e1;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            text-align: center;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
         }
 
         header {
             padding: 20px 5%;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0; z-index: 1000;
         }
 
-        .logo-small { width: 30px; }
-        .studio-name { font-family: 'Orbitron'; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo-box { display: flex; align-items: center; gap: 10px; }
+        .logo-box img { width: 35px; height: 35px; }
+        .logo-box span { font-family: 'Orbitron'; font-size: 1.1rem; letter-spacing: 1px; }
 
         .hero {
-            padding: 60px 20px;
-            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
         }
 
-        .main-wolf {
-            width: 250px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.05)); /* Еле заметное свечение */
-        }
+        .main-wolf { width: 180px; margin-bottom: 30px; }
 
-        h1 {
-            font-family: 'Orbitron';
-            font-size: clamp(24px, 6vw, 50px);
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-        }
+        h1 { font-family: 'Orbitron'; font-size: clamp(28px, 5vw, 45px); margin-bottom: 15px; letter-spacing: 2px; }
+        .hero p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; }
 
-        .subtitle {
-            color: #888;
-            font-weight: 300;
-            margin-bottom: 40px;
-        }
-
-        /* КНОПКИ В СТИЛЕ МИНИМАЛИЗМ */
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn {
-            padding: 12px 30px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text);
+            padding: 14px 28px;
             text-decoration: none;
-            font-family: 'Montserrat';
             font-size: 13px;
-            letter-spacing: 2px;
+            font-weight: 600;
             text-transform: uppercase;
-            transition: all 0.4s ease;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border-radius: 2px;
         }
+        .btn-dark { background: var(--accent); color: white; border: 1px solid var(--accent); }
+        .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
-        .btn:hover {
-            background: var(--text);
-            color: var(--bg);
-            border-color: var(--text);
-        }
+        .section-title { text-align: center; font-family: 'Orbitron'; margin-bottom: 50px; font-size: 1.5rem; }
 
-        /* ТАБЛИЦА ПРАЙСА */
-        .price-section {
-            padding: 80px 5%;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
 
-        .price-title {
-            font-family: 'Orbitron';
-            letter-spacing: 5px;
-            margin-bottom: 40px;
-            font-size: 1.5rem;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
-        .price-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .category-card {
+            background: var(--card);
+            padding: 40px;
             border: 1px solid var(--border);
-            max-width: 1000px;
-            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
-        .price-col {
-            padding: 30px;
-            border: 1px solid var(--border);
-            text-align: left;
-        }
+        .category-card h2 { font-family: 'Orbitron'; font-size: 1rem; margin-bottom: 30px; border-bottom: 2px solid var(--accent); display: inline-block; }
 
-        .price-col h3 {
-            font-family: 'Orbitron';
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            color: #888;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-
-        .price-item {
+        .service-item {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 14px;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        .price-item span { color: #555; font-size: 12px; }
+        .icon { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
 
-        @media (max-width: 600px) {
-            .btn { width: 100%; max-width: 300px; }
-        }
+        .service-info h4 { font-size: 15px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+        .service-info h4 span { color: #000; background: #eee; padding: 2px 8px; font-size: 12px; }
+        .service-info p { font-size: 13px; color: var(--text-secondary); margin-top: 5px; }
+
+        footer { text-align: center; padding: 40px; color: #999; font-size: 11px; font-family: 'Orbitron'; }
+
+        @media (max-width: 600px) { .btn { width: 100%; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" class="logo-small" alt="Apex">
-        <div class="studio-name">APEX STUDIO</div>
-    </header>
+<header>
+    <div class="logo-box">
+        <img src="logo.png" alt="Logo">
+        <span>APEX STUDIO</span>
+    </div>
+</header>
 
-    <section class="hero">
-        <img src="logo.png" class="main-wolf" alt="Apex Wolf">
-        <h1>APEX CREATIVE LEVEL</h1>
-        <p class="subtitle">Профессиональный дизайн и академическая помощь.<br>Мы создаем ваш успех.</p>
+<section class="hero">
+    <img src="logo.png" alt="Apex Wolf" class="main-wolf">
+    <h1>APEX CREATIVE LEVEL</h1>
+    <p>Профессиональный дизайн и академическая помощь. Создаем результат, который говорит сам за себя.</p>
+    <div class="btn-group">
+        <a href="https://t.me/ТВОЙ_НИК" class="btn btn-dark">Связаться в Telegram</a>
+        <a href="https://vk.com/ТВОЙ_ID" class="btn btn-outline">Связаться в VK</a>
+    </div>
+</section>
 
-        <div class="btn-container">
-            <a href="https://t.me/APEXSTUDIO1" class="btn">Связаться в Telegram</a>
-            <a href="https://vk.com/apexstudio1" class="btn">Связаться в VK</a>
-        </div>
-    </section>
-
-    <section class="price-section">
-        <div class="price-title">PRICE LIST</div>
-        <div class="price-table">
-            <div class="price-col">
-                <h3>ГРАФИЧЕСКИЙ ДИЗАЙН</h3>
-                <div class="price-item">Фирменный стиль <b>от 10 000 ₽</b></div>
-                <div class="price-item">Оформление ТГ/ВК <b>3 000 ₽</b></div>
-                <div class="price-item">Карточка товара <b>200 ₽</b></div>
-                <div class="price-item">Логотип <span>по запросу</span></div>
+<div class="container">
+    <h2 class="section-title">SERVICES & PRICES</h2>
+    <div class="grid">
+        
+        <div class="category-card">
+            <h2>DESIGN & IDENTITY</h2>
+            
+            <div class="service-item">
+                <i data-lucide="layers" class="icon"></i>
+                <div class="service-info">
+                    <h4>Фирменный стиль <span>от 10 000 ₽</span></h4>
+                    <p>Полная визуальная упаковка вашего бренда под ключ.</p>
+                </div>
             </div>
-            <div class="price-col">
-                <h3>EDUCATION СЕКТОР</h3>
-                <div class="price-item">Курсовая работа <b>от 4 000 ₽</b></div>
-                <div class="price-item">Реферат <b>500 ₽</b></div>
-                <div class="price-item">Презентация <b>50 ₽ / слайд</b></div>
+
+            <div class="service-item">
+                <i data-lucide="palette" class="icon"></i>
+                <div class="service-info">
+                    <h4>Логотип «APEX» <span>3 500 ₽</span></h4>
+                    <p>3 варианта, проработка смыслов, векторные исходники.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <i data-lucide="layout" class="icon"></i>
+                <div class="service-info">
+                    <h4>Оформление ТГ/ВК <span>2 000 ₽</span></h4>
+                    <p>Аватарка, баннер и обложки для навигации.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <i data-lucide="shopping-bag" class="icon"></i>
+                <div class="service-info">
+                    <h4>Карточка товара <span>200 ₽</span></h4>
+                    <p>Продающая инфографика для маркетплейсов (за 1 шт).</p>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div class="category-card">
+            <h2>ACADEMIC & SLIDES</h2>
+            
+            <div class="service-item">
+                <i data-lucide="file-text" class="icon"></i>
+                <div class="service-info">
+                    <h4>Курсовая работа <span>3 500 ₽</span></h4>
+                    <p>Теоретическая часть, сопровождение до самой защиты.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <i data-lucide="book-open" class="icon"></i>
+                <div class="service-info">
+                    <h4>Реферат <span>700 ₽</span></h4>
+                    <p>Оригинальность 70%+, полное оформление по ГОСТу.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <i data-lucide="presentation" class="icon"></i>
+                <div class="service-info">
+                    <h4>Презентация <span>50 ₽ / слайд</span></h4>
+                    <p>Современный дизайн, который выделит вас среди других.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <i data-lucide="mic" class="icon"></i>
+                <div class="service-info">
+                    <h4>Доклад + речь <span>500 ₽</span></h4>
+                    <p>Готовый текст для выступления: кратко и по делу.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 APEX STUDIO. ALL RIGHTS RESERVED.
+</footer>
+
+<script>
+    // Активируем иконки Lucide
+    lucide.createIcons();
+</script>
 
 </body>
 </html>
