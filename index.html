@@ -35,7 +35,7 @@
             --price-color: #000000; 
         }
 
-        html { scroll-behavior: smooth; } /* Плавный переход к рефератам */
+        html { scroll-behavior: smooth; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -126,7 +126,7 @@
         }
         .btn:hover { background: #000; color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px; position: relative;}
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative;}
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 60px; }
         
         .category-card { background: rgba(255,255,255,0.7); padding: 40px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.02);}
@@ -138,7 +138,7 @@
         .price { font-weight: 700; font-size: 14px; color: var(--price-color); }
 
         /* СЕКЦИЯ РЕФЕРАТОВ */
-        .referat-section { margin-top: 60px; }
+        .referat-section { margin-top: 60px; padding-top: 60px; border-top: 1px solid #000; }
         .search-box { position: relative; max-width: 500px; margin: 0 auto 40px; }
         .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #888; }
         .search-box input { 
@@ -157,7 +157,7 @@
 
         @media (max-width: 600px) { 
             .btn { width: 100%; justify-content: center; } 
-            .header-controls span { display: none; } /* Скрываем текст на мобилках для компактности */
+            .header-controls span { display: none; }
             .referat-card { flex-direction: column; align-items: flex-start; gap: 15px; }
         }
     </style>
@@ -264,18 +264,18 @@
             <div class="referat-list" id="referatList">
                 <div class="referat-card">
                     <div>
-                        <h4 class="ref-name">История Красноярска: от острога до мегаполиса</h4>
-                        <p style="font-size: 11px; color: #888; margin-top: 5px;">DOCX • 15 стр • ГОСТ 2026</p>
+                        <h4 class="ref-name">Внутриличностный конфликт</h4>
+                        <p style="font-size: 11px; color: #888; margin-top: 5px;">DOCX • Академическая работа • Психология</p>
                     </div>
-                    <a href="files/history_krsk.docx" class="download-btn" download>СКАЧАТЬ</a>
+                    <a href="files/Реферат Внутриличностный конфликт.docx" class="download-btn" download>СКАЧАТЬ</a>
                 </div>
 
                 <div class="referat-card">
                     <div>
-                        <h4 class="ref-name">Тренды в дизайне логотипов 2026 года</h4>
-                        <p style="font-size: 11px; color: #888; margin-top: 5px;">PDF • 10 стр • С примерами</p>
+                        <h4 class="ref-name">Реформы государственного управления Екатерины II</h4>
+                        <p style="font-size: 11px; color: #888; margin-top: 5px;">DOCX • История России • ГОСТ</p>
                     </div>
-                    <a href="files/logo_trends_2026.pdf" class="download-btn" download>СКАЧАТЬ</a>
+                    <a href="files/Реферат  РЕФОРМЫ ГОСУДАРСТВЕННОГО УПРАВЛЕНИЯ ЕКАТЕРИНЫ 2.docx" class="download-btn" download>СКАЧАТЬ</a>
                 </div>
             </div>
         </section>
@@ -283,7 +283,7 @@
 
     <footer>
         APEX STUDIO &copy; 2026 | DESIGNED BY ROMAN KULAKOV <br>
-        ЛОКАЦИЯ: Г. КРАСНОЯРСК (РАБОТАЕМ ПО ВСЕЙ РОССИИ ДИСТАНЦИОННО)
+        ЛОКАЦИЯ: Г. КРАСНОЯРСК (РАБОТАЕМ ПО ВСЕЙ РОСТЬИИ ДИСТАНЦИОННО)
     </footer>
 
     <script>
