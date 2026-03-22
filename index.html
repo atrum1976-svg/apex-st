@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Фавиконка (Волк на вкладке) -->
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
 
@@ -26,58 +25,56 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        /* ПЕРЕМЕННЫЕ ТЕМЫ */
         :root { 
             --bg-start: #ffffff; --bg-end: #f4f7f6; --text-main: #000000; 
             --accent: #1a1a1a; --border: #e0e0e0; --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.9);
         }
 
         [data-theme="dark"] {
             --bg-start: #0a0a0a; --bg-end: #121212; --text-main: #ffffff; 
-            --accent: #ffffff; --border: #333333; --card-bg: #1a1a1a;
+            --accent: #ffffff; --border: #222222; --card-bg: #111111;
+            --header-bg: rgba(10, 10, 10, 0.9);
         }
 
         html { scroll-behavior: smooth; }
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.3s ease, color 0.3s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
         body { background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%); color: var(--text-main); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; }
         
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
         .logo-box { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-        .logo-box img { width: 35px; }
+        
+        /* Логика смены логотипа */
+        .logo-img { width: 35px; }
+        .logo-white { display: none; }
+        [data-theme="dark"] .logo-black { display: none; }
+        [data-theme="dark"] .logo-white { display: block; }
+
         .logo-box span { font-family: 'Orbitron'; font-size: 1.1rem; letter-spacing: 2px; }
 
-        .nav-actions { display: flex; align-items: center; gap: 15px; }
-        .theme-toggle { cursor: pointer; background: none; border: 1px solid var(--border); color: var(--text-main); padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        
+        /* Кнопка темы */
+        .theme-btn { background: none; border: 1px solid var(--border); color: var(--text-main); padding: 8px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
         .profile-trigger { cursor: pointer; background: var(--accent); color: var(--bg-start); padding: 10px 20px; border-radius: 30px; display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
-        /* ПОРТФОЛИО С РУЧНЫМ СКРОЛЛОМ */
+        /* ПОРТФОЛИО */
         .portfolio-section { background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 30px 0; overflow: hidden; }
-        .portfolio-slider { 
-            display: flex; 
-            overflow-x: auto; 
-            scroll-snap-type: x mandatory; 
-            gap: 15px; 
-            padding: 10px 5%;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border) transparent;
-            -webkit-overflow-scrolling: touch;
-        }
-        .portfolio-slider::-webkit-scrollbar { height: 4px; }
-        .portfolio-slider::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        .portfolio-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; padding: 10px 5%; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .portfolio-slider::-webkit-scrollbar { display: none; }
 
-        .portfolio-item { 
-            flex: 0 0 280px; 
-            aspect-ratio: 1/1; 
-            scroll-snap-align: start; 
-            border: 1px solid var(--border); 
-            overflow: hidden; 
-            background: var(--bg-end);
-        }
+        .portfolio-item { flex: 0 0 280px; aspect-ratio: 1/1; scroll-snap-align: start; border: 1px solid var(--border); overflow: hidden; background: var(--bg-end); }
         .portfolio-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.6s; }
         .portfolio-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
 
-        .hero { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 20px; }
+        .hero { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
+        
+        /* Большой логотип в Hero */
         .main-wolf { width: 120px; margin-bottom: 20px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        [data-theme="dark"] .main-wolf { filter: drop-shadow(0 0 15px rgba(255,255,255,0.1)); }
+
         h1 { font-family: 'Orbitron'; font-size: clamp(24px, 5vw, 42px); letter-spacing: 5px; margin-bottom: 10px; }
         .hero-seo-text { font-family: 'Orbitron'; font-size: 11px; opacity: 0.8; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase; max-width: 700px; }
 
@@ -95,24 +92,25 @@
         .service-info p { font-size: 11px; opacity: 0.6; margin-top: 4px; }
         .price { font-weight: 700; font-size: 14px; white-space: nowrap; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(10px); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(10px); }
         .modal-card { background: var(--card-bg); padding: 40px; border: 1px solid var(--border); text-align: center; max-width: 400px; width: 90%; position: relative; }
+        .modal-photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 2px solid var(--text-main); }
 
-        footer { text-align: center; padding: 60px 20px; font-family: 'Orbitron'; font-size: 9px; opacity: 0.5; letter-spacing: 1px; border-top: 1px solid var(--border); }
+        footer { text-align: center; padding: 40px 20px; font-family: 'Orbitron'; font-size: 9px; opacity: 0.5; letter-spacing: 1px; border-top: 1px solid var(--border); }
 
-        @media (max-width: 600px) { 
-            .portfolio-item { flex: 0 0 220px; } 
-            .btn { width: 100%; } 
-        }
+        @media (max-width: 600px) { .portfolio-item { flex: 0 0 220px; } .btn { width: 100%; } }
     </style>
 </head>
 <body data-theme="light">
 
     <header>
-        <a href="#" class="logo-box"><img src="logo.png" alt="APEX"><span>APEX STUDIO</span></a>
-        <div class="nav-actions">
-            <!-- КНОПКА ТЕМНОЙ ТЕМЫ -->
-            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
+        <a href="#" class="logo-box">
+            <img src="logo.png" alt="APEX" class="logo-img logo-black">
+            <img src="logo_white.png" alt="APEX" class="logo-img logo-white">
+            <span>APEX STUDIO</span>
+        </a>
+        <div class="header-actions">
+            <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">
                 <i data-lucide="moon" size="18"></i>
             </button>
             <div class="profile-trigger" onclick="toggleModal()"><i data-lucide="user" size="16"></i><span>Основатель</span></div>
@@ -121,18 +119,31 @@
 
     <section class="portfolio-section">
         <div class="portfolio-slider">
-            <!-- Твои логотипы -->
             <div class="portfolio-item"><img src="logo1.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+1'"></div>
             <div class="portfolio-item"><img src="logo2.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+2'"></div>
             <div class="portfolio-item"><img src="logo3.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+3'"></div>
             <div class="portfolio-item"><img src="logo4.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+4'"></div>
             <div class="portfolio-item"><img src="logo5.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+5'"></div>
             <div class="portfolio-item"><img src="logo6.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+6'"></div>
+            <div class="portfolio-item"><img src="logo7.jpg" onerror="this.src='https://via.placeholder.com/300?text=LOGO+7'"></div>
         </div>
     </section>
 
+    <div class="modal-overlay" id="modal">
+        <div class="modal-card">
+            <i data-lucide="x" style="position: absolute; top:15px; right:15px; cursor:pointer;" onclick="toggleModal()"></i>
+            <img src="me.jpg" alt="Роман" class="modal-photo" onerror="this.src='https://via.placeholder.com/150'">
+            <h3>Кулаков Роман</h3>
+            <p style="font-size: 13px; opacity: 0.7; margin-top: 5px;">Графический дизайнер / Основатель APEX</p>
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border);">
+                <a href="mailto:atrum1976@gmail.com" style="color: var(--text-main); font-weight: 700; text-decoration: none; font-size: 14px;">atrum1976@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
     <section class="hero">
-        <img src="logo.png" alt="Apex Wolf" class="main-wolf">
+        <img src="logo.png" alt="Apex Wolf" class="main-wolf logo-black">
+        <img src="logo_white.png" alt="Apex Wolf" class="main-wolf logo-white">
         <h1>APEX STUDIO</h1>
         <h2 class="hero-seo-text">Минималистичный дизайн и сопровождение обучения в Красноярске</h2>
         <div class="btn-group">
@@ -150,6 +161,10 @@
                     <div class="price">от 1 500 ₽</div>
                 </div>
                 <div class="service-item">
+                    <div class="service-info"><h4>Визитки</h4><p>Дизайн стильных макетов</p></div>
+                    <div class="price">от 1 000 ₽</div>
+                </div>
+                <div class="service-item">
                     <div class="service-info"><h4>Фирменный стиль</h4><p>Полная визуальная концепция</p></div>
                     <div class="price">от 10 000 ₽</div>
                 </div>
@@ -157,25 +172,17 @@
             <div class="category-card">
                 <h2>STUDY & DOCS</h2>
                 <div class="service-item">
-                    <div class="service-info"><h4>Рефераты</h4><p>Оформление по ГОСТу</p></div>
+                    <div class="service-info"><h4>Рефераты</h4><p>Качественные работы по ГОСТу</p></div>
                     <div class="price">от 500 ₽</div>
                 </div>
                 <div class="service-item">
                     <div class="service-info"><h4>Курсовые работы</h4><p>Полное сопровождение</p></div>
                     <div class="price">от 3 500 ₽</div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modal">
-        <div class="modal-card">
-            <i data-lucide="x" style="position:absolute; top:15px; right:15px; cursor:pointer;" onclick="toggleModal()"></i>
-            <img src="me.jpg" alt="Роман" style="width:110px; height:110px; border-radius:50%; object-fit: cover; margin-bottom:20px; border:2px solid var(--text-main);" onerror="this.src='https://via.placeholder.com/150'">
-            <h3>Кулаков Роман</h3>
-            <p style="font-size: 13px; opacity: 0.7; margin: 10px 0 20px;">Графический дизайнер / Основатель APEX</p>
-            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border);">
-                <a href="mailto:atrum1976@gmail.com" style="color: var(--text-main); font-weight: 700; text-decoration: none; font-size: 14px;">atrum1976@gmail.com</a>
+                <div class="service-item">
+                    <div class="service-info"><h4>Презентации</h4><p>Слайды для защиты проекта</p></div>
+                    <div class="price">от 500 ₽</div>
+                </div>
             </div>
         </div>
     </div>
@@ -185,24 +192,28 @@
     <script>
         lucide.createIcons();
 
-        // ТЕМНАЯ ТЕМА
+        // Логика темной темы
+        const body = document.body;
+        const themeBtn = document.getElementById('theme-toggle');
+
         function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('theme-btn');
             const isDark = body.getAttribute('data-theme') === 'dark';
+            setTheme(isDark ? 'light' : 'dark');
+        }
+
+        function setTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
             
-            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            btn.innerHTML = isDark ? '<i data-lucide="moon" size="18"></i>' : '<i data-lucide="sun" size="18"></i>';
-            localStorage.setItem('apex-theme', isDark ? 'light' : 'dark');
+            // Смена иконки
+            const iconName = theme === 'dark' ? 'sun' : 'moon';
+            themeBtn.innerHTML = `<i data-lucide="${iconName}" size="18"></i>`;
             lucide.createIcons();
         }
 
-        // ПРОВЕРКА СОХРАНЕННОЙ ТЕМЫ
-        if (localStorage.getItem('apex-theme') === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-            document.getElementById('theme-btn').innerHTML = '<i data-lucide="sun" size="18"></i>';
-            lucide.createIcons();
-        }
+        // Загрузка сохраненной темы
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
 
         function toggleModal() {
             const modal = document.getElementById('modal');
